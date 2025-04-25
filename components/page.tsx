@@ -111,7 +111,7 @@ export default function ChatbotWidget() {
                 const isGreeting = msg.text === 'How can I help you?';
                 const baseStyle = 'rounded-xl p-2 max-w-[100%]';
                 const bgStyle = isGreeting
-                  ? 'bg-white font-semibold text-black'
+                  ? 'bg-white font-semibold text-gray-500'
                   : msg.sender === 'bot'
                   ? 'bg-gray-100'
                   : 'bg-[#83b3a3] self-end';
@@ -129,7 +129,7 @@ export default function ChatbotWidget() {
                 <button
                   key={idx}
                   onClick={() => handleSend(q.question)}
-                  className="text-sm px-4 py-2 rounded-full bg-[#83b3a3] cursor-pointer hover:bg-[#0e837c]"
+                  className="text-sm text-black px-4 py-2 rounded-full bg-[#83b3a3] cursor-pointer hover:bg-[#0e837c]"
                 >
                   {q.question}
                 </button>
