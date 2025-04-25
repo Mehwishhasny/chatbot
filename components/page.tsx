@@ -106,12 +106,12 @@ export default function ChatbotWidget() {
               </button>
             </div>
 
-            <div className="flex flex-col gap-2 max-h-25 sm:max-h-40 overflow-y-auto text-sm">
+            <div className="flex flex-col gap-2 max-h-35 sm:max-h-40 overflow-y-auto text-sm">
               {messages.map((msg, idx) => {
                 const isGreeting = msg.text === 'How can I help you?';
                 const baseStyle = 'rounded-xl p-2 max-w-[100%]';
                 const bgStyle = isGreeting
-                  ? 'bg-white font-semibold text-gray-500'
+                  ? 'bg-white font-semibold text-black'
                   : msg.sender === 'bot'
                   ? 'bg-gray-100'
                   : 'bg-[#83b3a3] self-end';
@@ -138,7 +138,7 @@ export default function ChatbotWidget() {
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 mt-2">
               <button onClick={() => handleSend()} className="text-[#96e9b0]">
-                For more info, <a href="https://mehwish@mfigroup.ae">click here</a>
+                For more info, <a href="https://web.whatsapp.com/0097142117384">click here</a>
                 <Send className="w-5 h-5" />
               </button>
             </div>
