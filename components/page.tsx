@@ -5,19 +5,19 @@ import { Bot, RefreshCw } from "lucide-react";
 const predefinedQuestions = [
   {
     question: "Why choose TMRC FB for your mortgage?",
-    answer: "We offer 99.9% approval rate with competitive market rates.",
+    answer: "We offer 99.9% guarantee of approval with competitive market rates.",
   },
   {
     question: "How long does mortgage processing take?",
-    answer: "Processing typically takes a minimum of 15 working days.",
+    answer: "It takes approximately 10 - 15 working days after completion of all the required documentation.",
   },
   {
     question: "What is the eligible age for a mortgage?",
-    answer: "Applicants must be between 25 and 65 years old.",
+    answer: "Applicants must be between 21 and 65 years old.",
   },
   {
-    question: "What services do you offer?",
-    answer: "We provide home finance, auto loans, and personal loans.",
+    question: "What services do we offer?",
+    answer: "We provide home finance, auto loans, and *personal loans.",
   },
 ];
 
