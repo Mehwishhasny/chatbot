@@ -41,7 +41,7 @@ export default function ChatbotWidget() {
     setMessages([{ sender: "TMRCFB bot", text: "How can I help you?" }]);
   };
 
-  const whatsappLink = "https://wa.me/0542117384?text=Hi%20I%20am%20interested%20in%20learning%20more%20about%20your%20services";
+  const whatsappLink = "https://wa.me/542117384?text=Hi%20I%20am%20interested%20in%20learning%20more%20about%20your%20services";
 
   return (
     <div className="fixed bottom-5 left-5 sm:left-15 z-50 w-[90%] sm:w-[350px] max-w-[350px]">
