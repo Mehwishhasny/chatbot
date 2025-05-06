@@ -88,8 +88,7 @@ export default function ChatbotWidget() {
   const whatsappLink = "https://wa.me/971505899143?text=Hi%20I%20am%20interested%20in%20learning%20more%20about%20your%20services";
 
   return (
-    <div className={`fixed bottom-8 left-5 sm:left-20 z-50 ${isOpen ? 'w-[90%] sm:w-[380px] max-w-[350px]' : ''}`}>
-
+    <div className="fixed bottom-8 left-5 sm:left-20 z-50 w-[90%] sm:w-[380px] max-w-[350px]">
       {!isOpen ? (
         <div className="relative group">
           <div
@@ -108,7 +107,7 @@ export default function ChatbotWidget() {
           </div>
         </div>
       ) : (
-        <div className="rounded-xl shadow-lg border border-gray-300 overflow-hidden">
+        <div className="rounded-xl shadow-lg overflow-hidden bg-transparent border-none">
           <div className="bg-[#0e837c] text-white px-4 py-2 flex items-center justify-between">
             <div className="flex items-center">
               <Bot className="w-6 h-6 mr-2" />
@@ -125,8 +124,8 @@ export default function ChatbotWidget() {
               ×
             </button>
           </div>
-
-          <div className="bg-white p-3 flex flex-col gap-2">
+          
+          <div className="bg-transparent p-3 flex flex-col gap-2">
             <div className="flex justify-end">
               <button
                 onClick={handleRefresh}
