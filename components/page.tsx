@@ -124,7 +124,7 @@ export default function ChatbotWidget() {
               ×
             </button>
           </div>
-          
+
           <div className="bg-transparent p-3 flex flex-col gap-2">
             <div className="flex justify-end">
               <button
@@ -183,7 +183,7 @@ export default function ChatbotWidget() {
     ← Back to Segments
   </button>
 
-  <div className="flex flex-col gap-2 mt-2 max-h-40 overflow-y-auto pr-1 bg-white/70 backdrop-blur-lg rounded-lg">
+  <div className="flex flex-col gap-2 mt-2 max-h-40 overflow-y-auto pr-1 bg-transparent rounded-lg">
   {selectedSegment.questions.map((q, idx) => (
     <button
       key={idx}
