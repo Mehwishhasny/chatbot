@@ -88,7 +88,7 @@ export default function ChatbotWidget() {
   const whatsappLink = "https://wa.me/971505899143?text=Hi%20I%20am%20interested%20in%20learning%20more%20about%20your%20services";
 
   return (
-    <div className="fixed bottom-8 left-5 sm:left-20 z-50 w-[90%] sm:w-[380px] max-w-[350px] h-[80vh]">
+    <div className="fixed bottom-8 left-5 sm:left-20 z-50 w-[90%] sm:w-[380px] max-w-[350px]">
       {!isOpen ? (
         <div className="relative group">
           <div
