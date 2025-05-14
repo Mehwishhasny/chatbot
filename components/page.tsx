@@ -50,11 +50,15 @@ const segments: Segment[] = [
   
 
   export default function ChatbotFullPage() {
-    const [messages, setMessages] = useState<Message[]>([]);
-  
+    const [messages, setMessages] = useState<Message[]>([
+      { sender: "bot", text: "Please select a segment to proceed." }
+    ]);
+    
+    
     const [selectedSegment, setSelectedSegment] = useState<Segment | null>(null);
   
     const bottomRef = useRef<HTMLDivElement | null>(null);
+
   
     useEffect(() => {
       if (selectedSegment && bottomRef.current) {
@@ -82,29 +86,26 @@ const segments: Segment[] = [
     };
     
     const handleRefresh = () => {
-      setMessages([]);
+      setMessages([
+        { sender: "bot", text: "Please select a segment to proceed." }
+      ]);
       setSelectedSegment(null);
     };
+    
   
     const whatsappLink =
       "https://wa.me/971505899143?text=Hi%20I%20am%20interested%20in%20learning%20more%20about%20your%20services";
   
     return (
-      <div className="min-h-screen flex flex-col items-center justify-start bg-white p-4">
+      <div className="min-h-screen h-screen overflow-y-auto flex flex-col items-center justify-start bg-white p-4">
 
-  {/* Show Welcome Popup */}
+  {/* Welcome Popup */}
   <WelcomePopup />
 
   {/* Header */}
   <div className="w-full max-w-5xl bg-[#0e837c] text-white px-4 py-3 rounded-t-lg shadow-md flex items-center justify-between">
   <div className="flex items-center gap-2">
-    {/* Logo Image */}
-    <img
-      src="/images/logo.jpeg" 
-      alt="Logo"
-      className="w-8 h-8 object-contain rounded-full"
-    />
-    {/* Bot Icon and Name */}
+    {/* Bot Icon */}
     <Bot className="w-6 h-6" />
     <span className="font-semibold sm:text-base text-sm">TMRCFB Assistant</span>
   </div>
@@ -118,32 +119,66 @@ const segments: Segment[] = [
 
 
   {/* Chat Area */}
-  <div className="w-full max-w-5xl flex flex-col gap-3 bg-gray-50 p-4 shadow-md border border-gray-200 rounded-b-lg h-[75vh] overflow-hidden">
+  <div className="w-full max-w-5xl flex flex-col gap-3 bg-gray-50 p-4 shadow-md border border-gray-200 rounded-b-lg sm:h-[85vh] h-[75vh] overflow-hidden relative">
 
     {/* Chat Messages */}
-    <div className="flex flex-col gap-2 overflow-y-auto h-[45vh] pr-2">
+    <div className={`flex flex-col gap-2 overflow-y-auto sm:h-[55vh] h-[40vh] pr-2
+  ${messages.length === 1 && messages[0].text === "Please select a segment to proceed."
+    ? "items-center justify-center text-center"
+    : ""}
+`}>
+
       {messages.map((msg, idx) => {
         const isGreeting =
           msg.text === "Please select a segment to proceed." ||
           msg.text === "Please select a question related to this segment.";
-        const baseStyle = "rounded-xl px-4 py-2 sm:max-w-[60%] max-w-[90%] sm:text-base text-[14px] ";
+        const baseStyle = "rounded-xl px-4 py-2 sm:max-w-[75%] max-w-[70%] sm:text-base text-[15px]";
         const bgStyle = isGreeting
           ? "bg-white font-semibold text-gray-500 self-center"
           : msg.sender === "bot"
           ? "bg-[#c8ad55] text-white self-start"
           : "bg-[#83b3a3] text-white self-end";
 
-        return (
-          <div key={idx} className={`${baseStyle} ${bgStyle}`}>
+          if (msg.sender === "bot" && !isGreeting) {
+            return (
+              <div key={idx} className="flex items-start gap-2 self-start">
+                <img
+                  src="/images/logo.jpeg"
+                  alt="Bot Logo"
+                  className="sm:w-14 sm:h-11 w-10 h-8 rounded-full mt-1"
+                />
+                <div className={`${baseStyle} ${bgStyle}`}>
+                  {msg.text}
+                </div>
+              </div>
+            );
+          }
+
+        if (msg.sender !== "bot" && !isGreeting) {
+          return (
+          <div key={idx} className="flex flex-row-reverse items-end gap-2 self-end">
+                <img
+                  src="/images/sender.jpg"
+                  alt="Sender Image"
+                  className="sm:w-14 sm:h-11 w-10 h-8 rounded-full mt-1 opacity-60"
+                />
+                <div className={`${baseStyle} ${bgStyle}`}>
             {msg.text}
           </div>
+          </div>
         );
-      })}
+      }
+      return (
+        <div key={idx} className={`${baseStyle} ${bgStyle}`}>
+          {msg.text}
+        </div>
+      );
+    })}
     </div>
 
     {/* Segments */}
     <div className="sm:mt-10 mt-6 flex justify-center w-full">
-      <div className="sm:max-h-[25vh] max-h-[22vh] overflow-y-auto rounded-lg border border-gray-200 p-3 bg-white shadow-inner sm:w-[80%] sm:max-w-4xl max-w-full flex flex-col justify-start">
+      <div className="sm:max-h-[22vh] max-h-[22vh] overflow-y-auto rounded-lg border border-gray-200 p-3 bg-white shadow-inner sm:w-[80%] sm:max-w-4xl max-w-full flex flex-col justify-start">
         {!selectedSegment ? (
           <div className="flex flex-wrap gap-2 justify-center">
             {segments
@@ -152,7 +187,7 @@ const segments: Segment[] = [
                 <button
                   key={idx}
                   onClick={() => handleSegmentClick(segment)}
-                  className="sm:text-base text-[12px] px-4 py-2 rounded-full bg-[#0e837c] text-white text-center hover:bg-[#83b3a3] w-full sm:w-auto max-w-xs break-words cursor-pointer"
+                  className="sm:text-[14px] text-[14px] px-4 py-2 rounded-full bg-[#0e837c] text-white text-center hover:bg-[#83b3a3] w-full sm:w-auto max-w-xs break-words cursor-pointer"
                 >
                   {segment.services}
                 </button>
@@ -165,7 +200,7 @@ const segments: Segment[] = [
                 setSelectedSegment(null);
                 setMessages([]);
               }}
-              className="sm:text-base text-[12px] text-[#c8ad55] underline hover:text-[#e0c974] w-fit cursor-pointer"
+              className="sm:text-[15px] text-[14px] text-[#c8ad55] underline hover:text-[#e0c974] w-fit cursor-pointer"
             >
               ← Back to Segments
             </button>
@@ -174,7 +209,7 @@ const segments: Segment[] = [
                 <button
                   key={idx}
                   onClick={() => handleQuestionClick(q)}
-                  className="sm:text-[14px] text-[12px] px-4 py-2 rounded-full bg-[#0e837c] text-white text-center hover:bg-[#83b3a3] w-auto cursor-pointer"
+                  className="sm:text-[15px] text-[14px] sm:px-4 px-2 py-2 rounded-full bg-[#0e837c] text-white text-center hover:bg-[#83b3a3] w-auto cursor-pointer"
                 >
                   {q.question}
                 </button>
@@ -191,7 +226,7 @@ const segments: Segment[] = [
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-green-600 fixed sm:bottom-22 bottom-18 hover:text-green-800 flex items-center gap-1 sm:text-sm text-[11px] cursor-pointer"
+        className="text-green-600 fixed sm:bottom-20 bottom-18 hover:text-green-800 flex items-center gap-1 text-sm cursor-pointer"
       >
         For more info, <b>click here</b>
         <svg
@@ -206,7 +241,7 @@ const segments: Segment[] = [
   </div>
 
   {/* Footer */}
-  <footer className="w-full max-w-5xl text-center sm:text-[12px] text-[10px] ext-gray-500 py-1 mt-3 leading-tight sm:h-[40px] h-[30px] overflow-hidden">
+  <footer className="w-full max-w-5xl text-center sm:text-[13px] text-[11px] text-black py-1 mt-3 leading-tight sm:h-[40px] h-[30px] overflow-hidden">
     <div>© {new Date().getFullYear()} TMRC Chatbot. All rights reserved.</div>
     <div className="text-[#0e837c]">
       <a
