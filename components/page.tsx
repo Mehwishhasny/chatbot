@@ -109,6 +109,7 @@ const segments: Segment[] = [
     <Bot className="w-6 h-6" />
     <span className="font-semibold sm:text-base text-sm">TMRCFB Assistant</span>
   </div>
+
   <button
     onClick={handleRefresh}
     className="flex items-center gap-1 text-sm text-white hover:text-gray-200 cursor-pointer"
