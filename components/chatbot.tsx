@@ -102,7 +102,7 @@ export default function ChatbotFullPage() {
     clients.push({ name: clientName, contact: clientContact });
     localStorage.setItem("clients", JSON.stringify(clients));
 
-    fetch("https://connect.pabbly.com/workflow/mapping/IjU3NjYwNTY4MDYzZTA0MzY1MjZjNTUzMDUxMzQi_pc", {
+    fetch("https://connect.pabbly.com/workflow/sendwebhookfiledata/IjU3NjEwNTZhMDYzNTA0MzI1MjY1NTUzMSI_3D_pc/IjU3NjYwNTY4MDYzZTA0MzY1MjZjNTUzMDUxMzQi_pc", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
