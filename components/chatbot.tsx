@@ -102,7 +102,7 @@ export default function ChatbotFullPage() {
     clients.push({ name: clientName, contact: clientContact });
     localStorage.setItem("clients", JSON.stringify(clients));
 
-    fetch("https://script.google.com/a/macros/mfigroup.ae/s/AKfycbyxXvaQTtno-507Bai7IhLklVtKpkeBcenwffi-ALPKmE6L8ZNUBfWZvDPUZ2EfZdCjjw/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbwS-yo0HiVFnTZxvMj7XjXDRrd7qFwTBAmV7hYXicFBY2j4s0b7PUEF2rjVSzhZ5WUITw/exec", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -112,7 +112,8 @@ export default function ChatbotFullPage() {
         contact: clientContact,
         time: new Date().toISOString(),
       }),
-    })
+    });
+    
   
     setClientName("");
     setClientContact("");
