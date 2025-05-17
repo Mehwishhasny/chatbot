@@ -101,7 +101,19 @@ export default function ChatbotFullPage() {
     const clients: Client[] = JSON.parse(localStorage.getItem("clients") || "[]");
     clients.push({ name: clientName, contact: clientContact });
     localStorage.setItem("clients", JSON.stringify(clients));
-    
+
+    fetch("https://connect.pabbly.com/workflow/mapping/IjU3NjYwNTY4MDYzZTA0MzY1MjZjNTUzMDUxMzQi_pc", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: clientName,
+        contact: clientContact,
+        time: new Date().toISOString(),
+      }),
+    })
+  
     setClientName("");
     setClientContact("");
     setShowModal(false);
