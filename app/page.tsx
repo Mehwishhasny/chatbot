@@ -1,10 +1,10 @@
-import ChatbotComponent from "@/components/chatbot";
+import ChatbotFullPage from "@/components/chatbot";
 
 export default function Home() {
   return (
     <div>
     
-<ChatbotComponent />
+<ChatbotFullPage />
 
 </div>
   );
