@@ -2,8 +2,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Bot, RefreshCw, X } from "lucide-react";
 import WelcomePopup from "@/components/popup";
-import type { Client } from '@/app/api/submit/route';
-
 type Question = { question: string; answer: string };
 type Segment = { services: string; questions: Question[]; hidden?: boolean };
 type Message = { sender: string; text: string };
@@ -95,36 +93,31 @@ export default function ChatbotFullPage() {
     setSelectedSegment(null);
   };
 
-  const handleClientSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClientSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-  
     if (!clientName.trim() || !clientContact.trim()) return;
+    
+    const clients: LocalClient[] = JSON.parse(localStorage.getItem("data") || "[]");
+    clients.push({ name: clientName, phone: clientContact });
+    localStorage.setItem("clients", JSON.stringify(clients));
+
+    fetch("https://www.tmrcbot.com/api/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        clientName: clientName,
+        clientContact: clientContact,
+
+      }),
+    });
+    
+    
   
-    try {
-      const response = await fetch("https://www.tmrcbot.com/api/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clientName, clientContact }),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Server error:", errorData.message);
-        alert("Failed to save client details.");
-        return;
-      }
-  
-      // Success — clear inputs, close modal, notify user
-      setClientName("");
-      setClientContact("");
-      setShowModal(false);
-      alert("Client details saved successfully!");
-    } catch (error) {
-      console.error("Network error:", error);
-      alert("Network error — please try again.");
-    }
+    setClientName("");
+    setClientContact("");
+    setShowModal(false);
+    alert("Client details saved successfully!");
   };
-  
 
   const handleCloseModal = () => {
     setShowModal(false);

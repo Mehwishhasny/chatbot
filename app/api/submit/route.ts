@@ -1,59 +1,52 @@
-// Define interface for client data
-export interface Client {
-    name: string;
-    phone: string;
-  }
-  
-  // Initialize clients array with explicit type
-  let clients: Client[] = [];
-  
-  export async function POST(request: Request) {
-    try {
-      const { clientName, clientContact } = await request.json();
-  
-      if (!clientName || !clientContact) {
-        return new Response(JSON.stringify({ message: 'Missing required fields' }), {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
-        });
-      }
-  
-      // Create submission with type safety
-      const submission: Client = {
-        name: clientName,
-        phone: clientContact,
-      };
-  
-      // Log client details to Vercel logs
-      console.log('New client submission:', submission);
-  
-      // Store in memory
-      clients.push(submission);
-  
-      return new Response(JSON.stringify({ message: 'Data saved successfully' }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    } catch (error) {
-      console.error('Error saving data:', error);
-      return new Response(JSON.stringify({ message: 'Internal server error' }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
+export const runtime = 'edge';
+
+
+import { NextRequest, NextResponse } from 'next/server';
+
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZpmi8A2Ugc2i0OIb8zo_Rg41xlyz5gIbBP1n8dqSWuv5RttYwQkWeSSxIZBDlFmNhlg/exec';
+
+export async function OPTIONS() {
+  const res = new NextResponse(null, { status: 204 });
+  res.headers.set('Access-Control-Allow-Origin', '*');
+  res.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+  return res;
+}
+
+
+
+export async function POST(req: NextRequest) {
+  try {
+    const { clientName, clientContact } = await req.json();
+
+    if (!clientName || !clientContact) {
+      const errorRes = NextResponse.json({ success: false, error: 'Missing name or contact' }, { status: 400 });
+      errorRes.headers.set('Access-Control-Allow-Origin', '*'); // Fallback CORS
+      return errorRes;
     }
+
+    const payload = {
+      name: clientName,
+      phone: clientContact,
+    };
+
+    const googleResponse = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await googleResponse.json();
+
+    const res = NextResponse.json({ success: true, result });
+    res.headers.set('Access-Control-Allow-Origin', '*'); // ✅ Fallback CORS here
+    return res;
+  } catch (error: any) {
+    console.error('Error forwarding to Google Sheets:', error);
+    const errRes = NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    errRes.headers.set('Access-Control-Allow-Origin', '*'); // Fallback CORS
+    return errRes;
   }
-  
-  export async function GET() {
-    try {
-      return new Response(JSON.stringify(clients), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    } catch (error) {
-      console.error('Error retrieving data:', error);
-      return new Response(JSON.stringify({ message: 'Internal server error' }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-  }
+}
