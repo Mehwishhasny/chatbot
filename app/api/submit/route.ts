@@ -14,14 +14,13 @@ export async function OPTIONS() {
 }
 
 
-
 export async function POST(req: NextRequest) {
   try {
     const { clientName, clientContact } = await req.json();
 
     if (!clientName || !clientContact) {
       const errorRes = NextResponse.json({ success: false, error: 'Missing name or contact' }, { status: 400 });
-      errorRes.headers.set('Access-Control-Allow-Origin', '*'); // Fallback CORS
+      errorRes.headers.set('Access-Control-Allow-Origin', '*');
       return errorRes;
     }
 
@@ -38,15 +37,16 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify(payload),
     });
 
-    const result = await googleResponse.json();
+    const resultText = await googleResponse.text(); // ✅ fix here
 
-    const res = NextResponse.json({ success: true, result });
-    res.headers.set('Access-Control-Allow-Origin', '*'); // ✅ Fallback CORS here
+    const res = NextResponse.json({ success: true, result: resultText }); // ✅ updated return
+    res.headers.set('Access-Control-Allow-Origin', '*');
     return res;
   } catch (error: any) {
     console.error('Error forwarding to Google Sheets:', error);
     const errRes = NextResponse.json({ success: false, error: error.message }, { status: 500 });
-    errRes.headers.set('Access-Control-Allow-Origin', '*'); // Fallback CORS
+    errRes.headers.set('Access-Control-Allow-Origin', '*');
     return errRes;
   }
 }
+
