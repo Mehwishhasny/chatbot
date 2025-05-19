@@ -103,7 +103,7 @@ export default function ChatbotFullPage() {
     clients.push({ name: clientName, contact: clientContact });
     localStorage.setItem("clients", JSON.stringify(clients));
 
-    fetch("/api/submit", {
+    fetch("https://www.tmrcbot.com/api/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
