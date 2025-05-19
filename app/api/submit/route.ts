@@ -1,7 +1,7 @@
 // Define interface for client data
 export interface Client {
     name: string;
-    contact: string;
+    phone: string;
     timestamp: string;
   }
   

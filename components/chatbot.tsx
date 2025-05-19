@@ -7,7 +7,7 @@ import type { Client } from '@/app/api/submit/route';
 type Question = { question: string; answer: string };
 type Segment = { services: string; questions: Question[]; hidden?: boolean };
 type Message = { sender: string; text: string };
-type LocalClient = { name: string; contact: string };
+type LocalClient = { name: string; phone: string };
 
 const segments: Segment[] = [
   { services: 'Mortgage', questions: [
