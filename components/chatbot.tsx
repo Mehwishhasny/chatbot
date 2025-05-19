@@ -100,7 +100,7 @@ export default function ChatbotFullPage() {
     if (!clientName.trim() || !clientContact.trim()) return;
     
     const clients: LocalClient[] = JSON.parse(localStorage.getItem("clients") || "[]");
-    clients.push({ name: clientName, contact: clientContact });
+    clients.push({ name: clientName, phone: clientContact });
     localStorage.setItem("clients", JSON.stringify(clients));
 
     fetch("https://www.tmrcbot.com/api/submit", {
@@ -108,7 +108,7 @@ export default function ChatbotFullPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: clientName,
-        contact: clientContact,
+        phone: clientContact,
         time: new Date().toISOString(),
       }),
     });

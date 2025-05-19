@@ -22,7 +22,7 @@ export interface Client {
       // Create submission with type safety
       const submission: Client = {
         name: clientName,
-        contact: clientContact,
+        phone: clientContact,
         timestamp: new Date().toISOString(),
       };
   
