@@ -2,11 +2,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Bot, RefreshCw, X } from "lucide-react";
 import WelcomePopup from "@/components/popup";
+import type { Client } from '@/app/api/submit/route';
 
 type Question = { question: string; answer: string };
 type Segment = { services: string; questions: Question[]; hidden?: boolean };
 type Message = { sender: string; text: string };
-type Client = { name: string; contact: string };
+type LocalClient = { name: string; contact: string };
 
 const segments: Segment[] = [
   { services: 'Mortgage', questions: [
@@ -98,21 +99,20 @@ export default function ChatbotFullPage() {
     e.preventDefault();
     if (!clientName.trim() || !clientContact.trim()) return;
     
-    const clients: Client[] = JSON.parse(localStorage.getItem("clients") || "[]");
+    const clients: LocalClient[] = JSON.parse(localStorage.getItem("clients") || "[]");
     clients.push({ name: clientName, contact: clientContact });
     localStorage.setItem("clients", JSON.stringify(clients));
 
-    fetch("https://script.google.com/macros/s/AKfycbwS-yo0HiVFnTZxvMj7XjXDRrd7qFwTBAmV7hYXicFBY2j4s0b7PUEF2rjVSzhZ5WUITw/exec", {
+    fetch("/api/submit-client", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: clientName,
         contact: clientContact,
         time: new Date().toISOString(),
       }),
     });
+    
     
   
     setClientName("");
