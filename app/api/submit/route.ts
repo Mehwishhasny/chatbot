@@ -2,7 +2,6 @@
 export interface Client {
     name: string;
     phone: string;
-    timestamp: string;
   }
   
   // Initialize clients array with explicit type
@@ -23,7 +22,6 @@ export interface Client {
       const submission: Client = {
         name: clientName,
         phone: clientContact,
-        timestamp: new Date().toISOString(),
       };
   
       // Log client details to Vercel logs

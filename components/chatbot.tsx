@@ -107,9 +107,8 @@ export default function ChatbotFullPage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: clientName,
-        phone: clientContact,
-        time: new Date().toISOString(),
+        clientName: clientName,
+        clientContact: clientContact,
       }),
     });
     
