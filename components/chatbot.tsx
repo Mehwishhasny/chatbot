@@ -6,6 +6,12 @@ type Question = { question: string; answer: string };
 type Segment = { services: string; questions: Question[]; hidden?: boolean };
 type Message = { sender: string; text: string };
 type LocalClient = { name: string; phone: string };
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TMRCFB BOT",
+  description: "Smart AI Chatbot for Instant Support & Services | TMRCFB BOT. Get real-time support, explore business services, and submit inquiries—24/7, human-like, and efficient.",
+};
 
 const segments: Segment[] = [
   { services: 'Mortgage', questions: [
