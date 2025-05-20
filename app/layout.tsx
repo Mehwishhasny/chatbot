@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TMRC BOT",
-  description: "TMRC BOT",
+  title: "TMRCFB BOT",
+  description: "Smart AI Chatbot for Instant Support & Services | TMRCFB BOT. Get real-time support, explore business services, and submit inquiries—24/7, human-like, and efficient.",
+  icons: {
+    icon: '/favicon.ico',
+  }
 };
 
 export default function RootLayout({

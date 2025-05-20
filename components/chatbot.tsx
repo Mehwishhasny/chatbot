@@ -127,7 +127,7 @@ export default function ChatbotFullPage() {
 
   return (
     
-    <div className="min-h-screen sm:h-screen overflow-y-auto flex flex-col items-center justify-start bg-white p-4">
+    <div className="min-h-screen h-screen overflow-y-auto flex flex-col items-center justify-start bg-white p-4">
        <div className={`w-full ${showModal ? 'blur-sm' : ''}`}>
       <WelcomePopup />
       </div>
@@ -145,7 +145,7 @@ export default function ChatbotFullPage() {
         </button>
       </div>
 
-      <div className="w-full max-w-5xl flex flex-col gap-3 bg-gray-50 p-4 shadow-md border border-gray-200 rounded-b-lg sm:h-[85vh] h-[75vh] overflow-hidden relative">
+      <div className="w-full max-w-5xl flex flex-col gap-3 bg-gray-50 p-4 shadow-md border border-gray-200 rounded-b-lg flex-grow overflow-hidden relative">
         <div className="flex flex-col gap-2 overflow-y-auto sm:h-[55vh] h-[40vh] pr-2 items-center justify-center text-center">
           {messages.map((msg, idx) => {
             const isGreeting =
@@ -305,7 +305,7 @@ export default function ChatbotFullPage() {
         </div>
       </div>
 
-      <footer className="w-full max-w-5xl text-center sm:text-[13px] text-[11px] text-black py-1 mt-3 leading-tight sm:h-[40px] h-[30px] overflow-hidden">
+      <footer className="w-full max-w-5xl text-center sm:text-[13px] text-[11px] text-black py-1 sm:mt-3 mt-1 leading-tight sm:h-[40px] overflow-hidden">
         <div>© {new Date().getFullYear()} TMRC Chatbot. All rights reserved.</div>
         <div className="text-[#0e837c]">
           <a
