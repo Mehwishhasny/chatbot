@@ -2,7 +2,7 @@
 import ChatbotFullPage from "@/components/chatbot";
 import React from 'react';
 
-export const metadata = {
+const metadata = {
   title: "TMRCFB BOT",
   description: "Smart AI Chatbot for Instant Support & Services | TMRCFB BOT. Get real-time support, explore business services, and submit inquiries—24/7, human-like, and efficient.",
   icons: {
