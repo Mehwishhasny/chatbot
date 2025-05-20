@@ -37,9 +37,9 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify(payload),
     });
 
-    const resultText = await googleResponse.text(); // ✅ fix here
+    const resultText = await googleResponse.text();
 
-    const res = NextResponse.json({ success: true, result: resultText }); // ✅ updated return
+    const res = NextResponse.json({ success: true, result: resultText });
     res.headers.set('Access-Control-Allow-Origin', '*');
     return res;
   } catch (error: any) {

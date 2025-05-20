@@ -97,9 +97,6 @@ export default function ChatbotFullPage() {
     e.preventDefault();
     if (!clientName.trim() || !clientContact.trim()) return;
     
-    const clients: LocalClient[] = JSON.parse(localStorage.getItem("data") || "[]");
-    clients.push({ name: clientName, phone: clientContact });
-    localStorage.setItem("clients", JSON.stringify(clients));
 
     fetch("https://www.tmrcbot.com/api/submit", {
       method: "POST",
@@ -107,7 +104,7 @@ export default function ChatbotFullPage() {
       body: JSON.stringify({
         clientName: clientName,
         clientContact: clientContact,
-
+       
       }),
     });
     
@@ -116,21 +113,21 @@ export default function ChatbotFullPage() {
     setClientName("");
     setClientContact("");
     setShowModal(false);
-    alert("Client details saved successfully!");
+    alert("Thank you! Our team will contact you soon.");
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
-  const whatsappLink =
-    "https://wa.me/971505899143?text=Hi%20I%20am%20interested%20in%20learning%20more%20about%20your%20services";
+ 
+  const whatsappLink = "https://api.whatsapp.com/send?phone=971505899143&text=Hi%20I%20am%20interested%20in%20learning%20more%20about%20your%20services";
     const firstLineText = "INTERESTED TO KNOW MORE ABOUT US??";
     const words = firstLineText.split(" ");
 
   return (
     
-    <div className="min-h-screen h-screen overflow-y-auto flex flex-col items-center justify-start bg-white p-4">
+    <div className="min-h-screen sm:h-screen overflow-y-auto flex flex-col items-center justify-start bg-white p-4">
        <div className={`w-full ${showModal ? 'blur-sm' : ''}`}>
       <WelcomePopup />
       </div>
@@ -246,7 +243,7 @@ export default function ChatbotFullPage() {
 
         {showModal && (
   <div className="fixed sm:top-0 inset-0 z-50 bg-opacity-40 flex justify-center sm:h-[450px] items-center overflow-y-auto">
-    <div className="bg-black/85 rounded-lg p-6 w-[90%] max-w-md relative border border-[#0e837c] mx-auto">
+    <div className="bg-black/85 rounded-lg p-6 sm:w-[90%] w-[85%] max-w-md relative border border-[#0e837c] mx-auto">
       <button
         onClick={handleCloseModal}
         className="absolute top-2 right-2 text-white hover:text-gray-700 cursor-pointer"
@@ -298,7 +295,7 @@ export default function ChatbotFullPage() {
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-green-600 fixed sm:bottom-20 bottom-18 hover:text-green-800 flex items-center gap-1 text-sm cursor-pointer"
+           className="text-green-600 fixed bottom-4 left-4 sm:bottom-6 sm:left-6 hover:text-green-800 flex items-center gap-1 text-sm cursor-pointer z-10"
           >
             For more info, <b>click here</b>
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
