@@ -295,7 +295,7 @@ export default function ChatbotFullPage() {
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-           className="text-green-600 fixed bottom-4 left-4 sm:bottom-6 sm:left-6 hover:text-green-800 flex items-center gap-1 text-sm cursor-pointer z-10"
+           className="text-green-600 fixed translate-y-[-50%] left-6 sm:bottom-6 sm:left-6 hover:text-green-800 flex items-center gap-1 text-sm cursor-pointer z-10"
           >
             For more info, <b>click here</b>
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
