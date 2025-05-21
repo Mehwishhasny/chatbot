@@ -6,12 +6,6 @@ type Question = { question: string; answer: string };
 type Segment = { services: string; questions: Question[]; hidden?: boolean };
 type Message = { sender: string; text: string };
 type LocalClient = { name: string; phone: string };
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "TMRCFB BOT",
-  description: "Smart AI Chatbot for Instant Support & Services | TMRCFB BOT. Get real-time support, explore business services, and submit inquiries—24/7, human-like, and efficient.",
-};
 
 const segments: Segment[] = [
   { services: 'Mortgage', questions: [
@@ -52,10 +46,12 @@ export default function ChatbotFullPage() {
   const [clientName, setClientName] = useState("");
   const [clientContact, setClientContact] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (bottomRef.current) {
+      setIsMounted(true);
       bottomRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
@@ -64,7 +60,9 @@ export default function ChatbotFullPage() {
     const timer = setTimeout(() => {
       setShowModal(true);
     }, 5000);
-    return () => clearTimeout(timer);
+    return (
+      
+    ) => clearTimeout(timer);
   }, []);
 
   const handleSegmentClick = (segment: Segment) => {
@@ -247,7 +245,7 @@ export default function ChatbotFullPage() {
           </div>
         </div>
 
-        {showModal && (
+        {isMounted && showModal && (
   <div className="fixed sm:top-0 inset-0 z-50 bg-opacity-40 flex justify-center sm:h-[450px] items-center overflow-y-auto">
     <div className="bg-black/85 rounded-lg p-6 sm:w-[90%] w-[85%] max-w-md relative border border-[#0e837c] mx-auto">
       <button
@@ -327,4 +325,10 @@ export default function ChatbotFullPage() {
       </footer>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
 }
