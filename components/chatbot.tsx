@@ -246,7 +246,8 @@ export default function ChatbotFullPage() {
         </div>
 
         {isMounted && showModal && (
-  <div className="fixed sm:top-0 inset-0 z-50 bg-opacity-40 flex justify-center sm:h-[450px] items-center overflow-y-auto">
+  <div className="fixed sm:top-0 inset-0 z-50 bg-opacity-40 flex justify-center sm:h-[450px] items-center overflow-y-auto"
+    data-nosnippet>
     <div className="bg-black/85 rounded-lg p-6 sm:w-[90%] w-[85%] max-w-md relative border border-[#0e837c] mx-auto">
       <button
         onClick={handleCloseModal}
