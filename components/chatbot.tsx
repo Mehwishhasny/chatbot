@@ -132,14 +132,9 @@ export default function ChatbotFullPage() {
   return (
     
     <div className="min-h-screen h-screen overflow-y-auto flex flex-col items-center justify-start bg-white p-4">
-       {showModal && (
-      <div aria-hidden={!showModal}>
-        <WelcomePopup onClose={handleCloseModal} />
-      </div>
-    )}
        <div className={`w-full ${showModal ? 'blur-sm' : ''}`}>
-
-      
+      <WelcomePopup />
+      </div>
 
       <div className="w-full max-w-5xl bg-[#0e837c] text-white px-4 py-3 rounded-t-lg shadow-md flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -248,7 +243,6 @@ export default function ChatbotFullPage() {
               </div>
             )}
           </div>
-        </div>
         </div>
 
         {isMounted && showModal && (

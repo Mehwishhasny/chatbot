@@ -1,20 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 
-type WelcomePopupProps = {
-  onClose: () => void;
-};
-
-export default function WelcomePopup({ onClose }: WelcomePopupProps) {
+export default function WelcomePopup() {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow(false);
-    }, 5000);
-    onClose()
+    }, 4000);
     return () => clearTimeout(timer);
-  }, [onClose]);
+  }, []);
 
   if (!show) return null;
 
