@@ -57,12 +57,13 @@ export default function ChatbotFullPage() {
   }, [messages]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowModal(true);
-    }, 5000);
-    return (
+    // Temporarily disabled popup
+    //const timer = setTimeout(() => {
+      //setShowModal(true);
+    //}, 5000);
+    //return (
       
-    ) => clearTimeout(timer);
+    //) => clearTimeout(timer);
   }, []);
 
   const handleSegmentClick = (segment: Segment) => {
@@ -131,7 +132,7 @@ export default function ChatbotFullPage() {
 
   return (
     
-    <div className="min-h-screen h-screen overflow-y-auto flex flex-col items-center justify-start bg-white p-4">
+    <div className="min-h-screen h-screen overflow-y-auto flex flex-col items-center justify-start bg-none p-4">
        <div className={`w-full ${showModal ? 'blur-sm' : ''}`}>
       <WelcomePopup />
       </div>
@@ -300,7 +301,7 @@ export default function ChatbotFullPage() {
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-           className="text-green-600 fixed translate-y-[-50%] left-6 sm:bottom-6 sm:left-6 hover:text-green-800 flex items-center gap-1 text-sm cursor-pointer z-10"
+           className="text-green-600 fixed bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hover:text-green-800 flex items-center gap-1 text-xs sm:text-xs cursor-pointer z-10"
           >
             For more info, <b>click here</b>
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -310,7 +311,7 @@ export default function ChatbotFullPage() {
         </div>
       </div>
 
-      <footer className="w-full max-w-5xl text-center sm:text-[13px] text-[11px] text-black py-1 sm:mt-3 mt-1 leading-tight sm:h-[40px] overflow-hidden">
+      <footer className="hidden w-full max-w-5xl text-center sm:text-[13px] text-[11px] text-black py-1 sm:mt-3 mt-1 leading-tight sm:h-[40px] overflow-hidden">
         <div>© {new Date().getFullYear()} TMRC Chatbot. All rights reserved.</div>
         <div className="text-[#0e837c]">
           <a
