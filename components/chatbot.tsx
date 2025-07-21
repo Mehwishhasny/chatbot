@@ -156,7 +156,7 @@ export default function ChatbotFullPage() {
             const isGreeting =
               msg.text === "Please select a segment to proceed." ||
               msg.text === "Please select a question related to this segment.";
-            const baseStyle = "rounded-xl px-4 py-2 sm:max-w-[75%] max-w-[70%] sm:text-base text-[14px]";
+            const baseStyle = "rounded-xl px-4 py-2 sm:max-w-[75%] max-w-[70%] sm:text-base text-[12px]";
             const bgStyle = isGreeting
               ? "bg-white font-semibold text-gray-500 self-center"
               : msg.sender === "bot"
@@ -213,7 +213,7 @@ export default function ChatbotFullPage() {
                     <button
                       key={idx}
                       onClick={() => handleSegmentClick(segment)}
-                      className="sm:text-[14px] text-[14px] px-4 py-2 rounded-full bg-[#0e837c] text-white text-center hover:bg-[#83b3a3] w-full sm:w-auto max-w-xs break-words cursor-pointer"
+                      className="sm:text-[14px] text-[12px] px-4 py-2 rounded-full bg-[#0e837c] text-white text-center hover:bg-[#83b3a3] w-full sm:w-auto max-w-xs break-words cursor-pointer"
                     >
                       {segment.services}
                     </button>
@@ -226,7 +226,7 @@ export default function ChatbotFullPage() {
                     setSelectedSegment(null);
                     setMessages([]);
                   }}
-                  className="sm:text-[15px] text-[14px] text-[#c8ad55] underline hover:text-[#e0c974] w-fit cursor-pointer"
+                  className="sm:text-[15px] text-[12px] text-[#c8ad55] underline hover:text-[#e0c974] w-fit cursor-pointer"
                 >
                   ← Back to Segments
                 </button>
@@ -235,7 +235,7 @@ export default function ChatbotFullPage() {
                     <button
                       key={idx}
                       onClick={() => handleQuestionClick(q)}
-                      className="sm:text-[15px] text-[14px] sm:px-4 px-2 py-2 rounded-full bg-[#0e837c] text-white text-center hover:bg-[#83b3a3] w-auto cursor-pointer"
+                      className="sm:text-[15px] text-[12px] sm:px-4 px-2 py-2 rounded-full bg-[#0e837c] text-white text-center hover:bg-[#83b3a3] w-auto cursor-pointer"
                     >
                       {q.question}
                     </button>
