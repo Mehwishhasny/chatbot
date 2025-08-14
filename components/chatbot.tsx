@@ -132,7 +132,7 @@ export default function ChatbotFullPage() {
 
   return (
     
-    <div className="min-h-screen h-screen overflow-y-auto flex flex-col items-center justify-start bg-none p-4">
+    <div className="min-h-screen h-screen overflow-y-auto flex flex-col items-center justify-start bg-none">
        <div className={`w-full ${showModal ? 'blur-sm' : ''}`}>
       <WelcomePopup />
       </div>
