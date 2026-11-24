@@ -296,21 +296,7 @@ export default function ChatbotFullPage() {
   </div>
 )}
 
-        <div className="mt-3">
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-           className="text-green-600 fixed bottom-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hover:text-green-800 flex items-center gap-1 text-[9px] sm:text-xs cursor-pointer z-10"
-          >
-            For more info, <b>click here</b>
-            <svg className="sm:w-5 w-4 sm:h-5 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0C5.372 0 0 5.373 0 12c0 2.125.555 4.11 1.516 5.844L0 24l6.262-1.594C8.014 23.445 9.956 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm5.603 17.197c-.249.699-1.434 1.366-2.058 1.454-.524.073-1.179.104-1.899-.12-.437-.136-1.004-.328-1.724-.644-3.034-1.311-5.012-4.542-5.168-4.765-.153-.22-1.234-1.646-1.234-3.14 0-1.493.789-2.225 1.069-2.51.279-.282.621-.353.83-.353h.592c.186 0 .437-.063.684.52.249.583.84 2.017.915 2.162.073.146.123.312.024.499-.1.186-.149.299-.298.464-.1.166-.214.3-.338.406-.125.137-.263.298-.35.468.08.162.148.34.215.513.027.06.06.123.08.183.042.142.07.289.1.437.06.304.114.618.174.937.092.497.193 1.007.278 1.512z" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
+  
       <footer className="hidden w-full max-w-5xl text-center sm:text-[13px] text-[11px] text-black py-1 sm:mt-3 mt-1 leading-tight sm:h-[40px] overflow-hidden">
         <div>© {new Date().getFullYear()} TMRC Chatbot. All rights reserved.</div>
         <div className="text-[#0e837c]">
